@@ -1,4 +1,5 @@
 const express=require('express');
+const{generatefile}=require('./generatefile');
 
 const app=express();
 
@@ -9,17 +10,18 @@ app.get("/",(req,res)=>{
     return res.json({"hello":"duniya"});
 });
 
-app.post("/run",(req,res)=>{
+app.post("/run",async(req,res)=>{
 
-    const {language="cpp",code}=req.body;
+    const {language="java",code}=req.body;
     
     if(code===undefined){
         return res.status(400).json({success:false,error:"Empty code body"});
     }
 
-    //need to geenrate a c++ file with content from the request
+    const filepath=await generatefile(language,code);
+    //need to geenrate a java file with content from the request
     //we need to run the file and send the response
-    return res.json({language,code});
+    return res.json({filepath});
 
 })
 
