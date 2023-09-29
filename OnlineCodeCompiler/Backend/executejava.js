@@ -1,32 +1,36 @@
-const {exec}=require('child_process');
-const { error } = require('console');
-const outputpath=path.join(__dirname,"outputs");
-const fs=require('fs');
-const path=require('path');
-const { stderr } = require('process');
+const { exec } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 
-if(!fs.existsSync(outputpath)){
-    fs.mkdirSync(outputpath,{recursive:true});
+const outputpath = path.join(__dirname, "outputs");
+
+if (!fs.existsSync(outputpath)) {
+    fs.mkdirSync(outputpath, { recursive: true });
 }
 
-const executejava=(filepath)=>{
-    const jobId=path.basename(filepath).split(".")[0];
-    const outputpath=path.join(outputpath,`${jobId}.out`);
-       
-    return new Promise((resolve,reject)=>{
-        exec(`java ${filepath} -o ${outputpath} &&  cd ${outputpath} && ./${jobId}.out`,
-        (error,stdout,stderr)=>{
-            if(error){
-                reject({error,stderr});
-            }
-            if(stderr){
+const executejava = (filepath, className) => {
+    const jobId = path.basename(filepath).split(".")[0];
+    const outpath = path.join(outputpath, `${jobId}.out`);
+
+    return new Promise((resolve, reject) => {
+        const command = `javac ${filepath} -d ${outpath} && cd ${outpath} && java ${className}`;
+        console.log("Executing command:", command);
+
+        exec(command, (error, stdout, stderr) => {
+            if (error) {
+                console.error("Error during execution:", error);
+                reject(error);
+            } else if (stderr) {
+                console.error("Error in stderr:", stderr);
                 reject(stderr);
+            } else {
+                console.log("Execution successful. Output:\n", stdout);
+                resolve(stdout);
             }
-            resolve(stdout);
         });
-    })
+    });
 }
 
-module.exports={
+module.exports = {
     executejava
 }

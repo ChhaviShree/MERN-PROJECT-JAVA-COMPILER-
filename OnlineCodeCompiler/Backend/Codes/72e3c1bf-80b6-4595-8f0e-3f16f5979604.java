@@ -1,8 +1,7 @@
 import java.util.*;
 
-public class HelloWorld {
+class newfile {
   public static void main(String args[]) {
-    System.out.println("hello duniya");
+    System.out.println("hello duniya its chhavi");
   }
-
 }
