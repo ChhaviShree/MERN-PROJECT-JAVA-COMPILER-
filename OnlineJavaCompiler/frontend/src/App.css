@@ -1,0 +1,31 @@
+* {
+  text-align: center;
+  background-color: rgb(199, 203, 249);
+  border-radius: 2px;
+  
+}
+h1 {
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+.code-editor {
+  text-align: left;
+  background-color: rgb(245, 232, 237);
+  border-radius: 2px;
+  padding: 10px;
+  width: 60%; 
+}
+
+
+#btn1{
+  border-radius: 5px;
+  height: 60px;
+  width:120px;
+  font-weight: bold;
+  font-size: 20px;
+}
+#lang{
+  margin-right: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: crimson;
+}
+
