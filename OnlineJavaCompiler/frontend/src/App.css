@@ -7,6 +7,10 @@
 h1 {
   font-family:Georgia, 'Times New Roman', Times, serif
 }
+h3{
+  color: crimson;
+  margin-right: 390px;
+}
 .code-editor {
   text-align: left;
   background-color: rgb(245, 232, 237);
@@ -15,7 +19,11 @@ h1 {
   width: 60%; 
 }
 
-
+.output-textarea{
+  text-align: left;
+  font-weight: 600;
+  font-size: large;
+}
 #btn1{
   border-radius: 5px;
   height: 60px;

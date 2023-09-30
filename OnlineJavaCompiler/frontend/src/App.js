@@ -6,6 +6,7 @@ function App() {
   const [code, setCode] = useState('');
   const [language,setlanguage]=useState('java');
   const [className, setClassName] = useState(''); // Add state for className
+  const [output,setOutput]=useState('');
 
   const handleSubmit = () => {
     const payload = {
@@ -17,7 +18,7 @@ function App() {
     axios
       .post('http://localhost:5000/run', payload)
       .then((response) => {
-        console.log(response.data);
+        setOutput(response.data.output);
       })
       .catch((error) => {
         if (error.response) {
@@ -68,6 +69,16 @@ function App() {
       <br />
       <br/>
       <button id="btn1" onClick={handleSubmit}>Submit</button>
+      <br/>
+      <h3>Output</h3>
+      <textarea
+        rows="5" 
+        cols="50"
+        value={output}
+        readOnly 
+        className="output-textarea" 
+      ></textarea>
+      <br/>
     </div>
   );
 }
