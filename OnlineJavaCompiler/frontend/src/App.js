@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 function App() {
   const [code, setCode] = useState('');
   const [language,setlanguage]=useState('java');
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <h1 >Online Code Compiler</h1>
       <div className='editor-container'>
         <label id="lang">Choose Language</label>
@@ -50,6 +52,7 @@ function App() {
       </div>
     <br/>  
     <input
+        
         type="text"
         placeholder="Enter class name"
         value={className}
